@@ -2,7 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using LearningLibrary;
+using LearningLibrary.Exercises;
+
 
 namespace Learning_Intermediate
 {
@@ -11,8 +14,39 @@ namespace Learning_Intermediate
 
         static void Main(string[] args)
         {
-                   
+            Stopwatch();
+            
 
+        }
+
+        static void Stack()
+        {
+            var _stack = new StackClass();
+
+            int ini = 1;
+            int max = 5;
+
+            for (int i = ini; i <= max; i++)
+                _stack.Push(i);
+            _stack.Clear();
+            for(int i = ini; i <= max; i++)
+                Console.WriteLine(_stack.Pop());
+        }
+        static void StackOverFlow()
+        {
+            var stack = new StackOverflow()
+            {
+                Title = "Courses",
+                Description = "Courses about C#"
+            };
+            Console.WriteLine(stack.DateCreated);
+            Console.WriteLine(stack.Title);
+            Console.WriteLine(stack.Description);
+            stack.UpVote();
+            stack.UpVote();
+            stack.UpVote();
+            stack.DownVote();
+            Console.WriteLine(stack.vote);
         }
         static void DownCasting()
         {
@@ -52,11 +86,24 @@ namespace Learning_Intermediate
         static void Stopwatch() 
         {
             var timer = new StopWatch();
-            timer.Start();
-            timer.Stop();
-            Console.WriteLine(timer.timespan);
-            Console.WriteLine(timer.StartTimer);
-            Console.WriteLine(timer.StopTimer);
+            for (var i = 0; i < 2; i++)
+            {
+                timer.Start();
+                Thread.Sleep(1000);
+
+                timer.Stop();
+
+                Console.WriteLine("Duration: " + timer.GetInterval());
+                if (i < 1)
+                {
+                    Console.WriteLine("Press enter to run the stopwatch again.");
+                }
+                else
+                {
+                    Console.WriteLine("Press enter to quit");
+                }
+                Console.ReadLine();
+            }
         }
         static void Cookie()
         {
